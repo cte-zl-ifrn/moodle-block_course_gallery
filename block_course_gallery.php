@@ -50,7 +50,7 @@ class block_course_gallery extends block_base {
         global $OUTPUT;
 
         $data = [
-            'gallery_title' => $this->config->gallery_title,
+            'gallery_title' => $this->config->gallery_title ?? "Cursos abertos do IFRN",
         ];
 
         $this->content = new stdClass();

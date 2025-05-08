@@ -1,3 +1,4 @@
+
 <?php
 // This file is part of Moodle - https://moodle.org/
 //
@@ -28,4 +29,4 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Course Gallery';
 
 $string['add_title'] = 'Frontpage main courses title';
-$string['filter'] = 'Filters';
+$string['filter'] = 'Filtros';
