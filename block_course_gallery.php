@@ -59,10 +59,11 @@ class block_course_gallery extends block_base {
         ];
 
         $this->content = new stdClass();
-        $this->content->text = $OUTPUT->render_from_template('block_course_gallery/course_gallery', $data);
+        $this->content->text = $OUTPUT->render_from_template('block_course_gallery/header', $data);
         $this->content->footer = '';
 
         $this->content->text .= $this->render_courses();
+        $this->content->text .= $OUTPUT->render_from_template('block_course_gallery/pagination', []);
 
         return $this->content;
     }
