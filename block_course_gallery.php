@@ -38,6 +38,11 @@ class block_course_gallery extends block_base {
      */
     public function get_content() {
 
+        global $PAGE, $CFG;
+
+        $courses_request_url = $CFG->wwwroot . '/blocks/course_gallery/api/get_courses.php';
+        $PAGE->requires->js_call_amd('block_course_gallery/main', 'init', [$courses_request_url]);
+
         if ($this->content !== null) {
             return $this->content;
         }
