@@ -1,7 +1,7 @@
 define(["core/str"], function (str) {
     let url = '';
     let currentPage = 0;
-    const limit = 9;
+    let limit = 0;
     let totalCourses = 0;
 
     const courseArea = document.querySelector('.course-area');
@@ -237,8 +237,10 @@ define(["core/str"], function (str) {
     window.addEventListener('load', correctMainPadding);
 
     return {
-        init: (requestUrl) => {
+        init: (requestUrl, maxCourses) => {
             url = requestUrl;
+            limit = maxCourses;
+            limit = limit || 9;
             loadCourses();
         }
     };

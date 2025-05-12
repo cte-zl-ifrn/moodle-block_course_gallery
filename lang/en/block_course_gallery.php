@@ -29,3 +29,4 @@ $string['pluginname'] = 'Course Gallery';
 
 $string['add_title'] = 'Frontpage main courses title';
 $string['filter'] = 'Filters';
+$string['max_courses'] = 'Courses per page';
