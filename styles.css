@@ -11,7 +11,7 @@
         justify-content: space-between;
         gap: 1rem;
 
-        @include media-breakpoint-down(sm) {
+        @media (max-width: 576px) {
             flex-direction: column;
             justify-content: center;
             margin-top: 50px;
@@ -29,7 +29,7 @@
         .frontpage-hero-main-header-filter {
             display: flex;
             gap: .5rem;
-            @include media-breakpoint-down(sm) {  
+            @media (max-width: 576px) {
                 justify-content: center;   
             }
 
@@ -42,7 +42,7 @@
                 align-items: center;
                 color: var(--dark);
                 background-color: var(--general-white);
-                @include media-breakpoint-down(md) {  
+                @media (max-width: 768px) { 
                     min-width: auto;       
                 }
                 
@@ -98,12 +98,12 @@
     margin-bottom: 2rem;
     min-height: 380px;
 
-    @include media-breakpoint-down(lg) {
+    @media (max-width: 992px) {
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
 
-    @include media-breakpoint-down(sm) {
+    @media (max-width: 576px) {
         grid-template-columns: 1fr;
     }
 }
@@ -281,7 +281,7 @@
             margin: 0 5px;
         }
 
-        @include media-breakpoint-down(sm) {
+        @media (max-width: 576px) {
             > span {
                 display: none;
             }
