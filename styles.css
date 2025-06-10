@@ -9,7 +9,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 1rem;
+        gap: 1.5rem;
 
         @media (max-width: 576px) {
             flex-direction: column;
@@ -27,6 +27,7 @@
         }
 
         .frontpage-hero-main-header-filter {
+            flex: 1;
             display: flex;
             gap: .5rem;
             @media (max-width: 576px) {
@@ -34,7 +35,8 @@
             }
 
             .frontpage-hero-main-header-filter-search {
-                min-width: 400px;
+                flex: 1;
+                min-width: 200px;
                 padding: .5rem 1rem;
                 border-radius: 32px;
                 border: 1px solid var(--primary);
@@ -323,7 +325,7 @@
     box-shadow: 0px 0px 4px 1px #2B2B2B40;
     padding: 16px 24px;
     z-index: 2000;
-    width: 648px;
+    width: max-content;
     height: 430px;
 
     .filter-header {
@@ -337,27 +339,33 @@
         }
 
         .filter-header-close-button {
-            background: none;
+            background-color: var(--light-dark);
+            border-radius: 20px;
             border: none;
             cursor: pointer;
-            
-            img {
-                width: 24px;
-                height: 24px;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background-color: var(--dark-light);
+                color: var(--light);
             }
         }
     }
 
     .filter-content {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        display: flex;
+        grid-template-columns: repeat(4, 200px);
+        flex-wrap: wrap;
+        gap: 2rem;
         margin-top: 20px;
 
         .filter-content-column-title {
             font: var(--font-heading3);
             margin: 0 0 10px 0;
             color: var(--dark);
+        }
+
+        .filter-content-column {
+            min-width: 150px;
         }
 
         label {
@@ -400,13 +408,23 @@
     .filter-footer {
         display: flex;
         justify-content: end;
-        margin: 20px 0;
+        margin-top: 1rem;
 
         .filter-footer-clear-button {
             background: none;
             border: none;
             font: var(--font-button3);
-            text-decoration: underline;
+            position: relative;
+            padding-inline: 0px;
+            &::after {
+                content: '';
+                height: 1px;
+                width: 100%;
+                background-color: var(--dark);
+                position: absolute;
+                bottom: 8px;
+                left: 0px;
+            }
         }
 
         .filter-footer-apply-button {
@@ -417,7 +435,11 @@
             border-radius: 12px;
             padding: 8px 10px;
             cursor: pointer;
-            margin-left: 10px;
+            margin-left: 1rem;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background-color: var(--primary-dark);
+            }
         }
     }
 }
@@ -431,4 +453,11 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1999;
+}
+
+@media (max-width: 992px) {
+    .filter-area {
+        width: 90%;
+        overflow-y: auto;
+    } 
 }

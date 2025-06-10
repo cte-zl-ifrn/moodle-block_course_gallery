@@ -151,16 +151,16 @@ define(["core/str"], function (str) {
     function getFilter() {
         const filters = { workload: [], certificate: [], lang: [], learningpath: [] };
 
-        document.querySelectorAll('.filter-content-workload-column input[type="checkbox"]:checked').forEach(checkbox => filters.workload.push(checkbox.value));
+        document.querySelectorAll('#filter-content-workload-column input[type="checkbox"]:checked').forEach(checkbox => filters.workload.push(checkbox.value));
         filters.workload = filters.workload.join(',');
 
-        document.querySelectorAll('.filter-content-certificate-column input[type="checkbox"]:checked').forEach(checkbox => filters.certificate.push(checkbox.value));
+        document.querySelectorAll('#filter-content-certificate-column input[type="checkbox"]:checked').forEach(checkbox => filters.certificate.push(checkbox.value));
         filters.certificate = filters.certificate.join(',');
 
-        document.querySelectorAll('.filter-content-lang-column input[type="checkbox"]:checked').forEach(checkbox => filters.lang.push(checkbox.value));
+        document.querySelectorAll('#filter-content-lang-column input[type="checkbox"]:checked').forEach(checkbox => filters.lang.push(checkbox.value));
         filters.lang = filters.lang.join(',');
 
-        document.querySelectorAll('.filter-content-learningpath-column input[type="checkbox"]:checked').forEach(checkbox => filters.learningpath.push(checkbox.value));
+        document.querySelectorAll('#filter-content-learningpath-column input[type="checkbox"]:checked').forEach(checkbox => filters.learningpath.push(checkbox.value));
         filters.learningpath = filters.learningpath.join(',');
 
         return filters;
