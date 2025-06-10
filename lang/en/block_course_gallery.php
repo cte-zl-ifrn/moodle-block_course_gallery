@@ -27,6 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Course Gallery';
 
-$string['add_title'] = 'Frontpage main courses title';
+$string['add_title'] = 'Main  title';
 $string['filter'] = 'Filters';
 $string['max_courses'] = 'Courses per page';

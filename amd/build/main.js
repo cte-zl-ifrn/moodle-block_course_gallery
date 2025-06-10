@@ -52,7 +52,7 @@ define(["core/str"], function (str) {
                     </div>
                 `;
                 courseArea.innerHTML += `
-                    <a class="frontpage-course-card" id="${course.id}" href="${baseurl}/course/view.php?id=${course.id}">
+                    <a class="course-gallery-card" id="${course.id}" href="${baseurl}/course/view.php?id=${course.id}">
                         <div class="course-image-container">
                             <img src="${course.image_url}" alt="${course.fullname}" class="course-image">
                         </div>
