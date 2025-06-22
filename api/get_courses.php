@@ -82,7 +82,7 @@ foreach ($courses as $course) {
         }
     }
 
-    $course_lang = isset($custom_fields_metadata->linguagem_conteúdo) ? $custom_fields_metadata->linguagem_conteúdo : '';
+    $course_lang = isset($custom_fields_metadata->linguagem_conteudo) ? $custom_fields_metadata->linguagem_conteudo : '';
 
     if (!empty($workload)) {
         $workload_values = explode(',', $workload);
@@ -120,7 +120,7 @@ foreach ($courses as $course) {
     $course_response = new stdClass();
     $course_response->has_certificate = $custom_fields_metadata->tem_certificado;
     $course_response->workload = $custom_fields_metadata->carga_horaria;
-    $course_response->lang = $custom_fields_metadata->linguagem_conteúdo;
+    $course_response->lang = $custom_fields_metadata->linguagem_conteudo;
     $course_response->id = $course->id;
     $course_response->fullname = $course->fullname;
     $course_response->category_name = $category->name;
