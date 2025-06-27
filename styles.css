@@ -30,6 +30,7 @@
             flex: 1;
             display: flex;
             gap: .5rem;
+            justify-content: end;
             @media (max-width: 576px) {
                 justify-content: center;   
             }
@@ -37,6 +38,7 @@
             .course-gallery-main-header-filter-search {
                 flex: 1;
                 min-width: 200px;
+                max-width: 500px;
                 padding: .5rem 1rem;
                 border-radius: 32px;
                 border: 1px solid var(--primary);
@@ -326,7 +328,6 @@
     padding: 16px 24px;
     z-index: 2000;
     width: max-content;
-    height: 430px;
 
     .filter-header {
         display: flex;
@@ -446,6 +447,43 @@
             }
         }
     }
+}
+
+#filter-content-workload-column {
+
+    .filter-content-column-title {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .workload-range-label {
+        font: var(--font-heading5);
+    }
+
+}
+
+/* Container do slider */
+#workload-slider {
+    margin: 1rem 0;
+    height: 8px;
+    width: 190px;
+
+  /* Ponteiros: bolinhas */
+    .noUi-handle {
+        width: 16px;
+        height: 16px;
+        border: 2px solid white;
+        border-radius: 50%;
+        top: -5px; /* centraliza verticalmente */
+        right: -10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        cursor: grab;
+    }
+
+    .noUi-handle:after, #workload-slider .noUi-handle:before {
+        display: none;
+    }
+
 }
 
 .modal-overlay {

@@ -30,17 +30,18 @@
         </button>
     </div>
     <div class="filter-content">
+
         <div id="filter-content-workload-column" class="filter-content-column">
-            <h5 class="filter-content-column-title">{{#str}}workload, theme_suap{{/str}}</h5>
-            <label><input type="checkbox" value="10"> {{#str}} upto_hours, theme_suap, 10 {{/str}}</label>
-            <label><input type="checkbox" value="20"> {{#str}} upto_hours, theme_suap, 20 {{/str}}</label>
-            <label><input type="checkbox" value="30"> {{#str}} upto_hours, theme_suap, 30 {{/str}}</label>
-            <label><input type="checkbox" value="40"> {{#str}} upto_hours, theme_suap, 40 {{/str}}</label>
-            <label><input type="checkbox" value="50"> {{#str}} upto_hours, theme_suap, 50 {{/str}}</label>
-            <label><input type="checkbox" value="60"> {{#str}} upto_hours, theme_suap, 60 {{/str}}</label>
-            <label><input type="checkbox" value="70"> {{#str}} upto_hours, theme_suap, 70 {{/str}}</label>
-            <label><input type="checkbox" value="80"> {{#str}} upto_hours, theme_suap, 80 {{/str}}</label>
+            <h5 class="filter-content-column-title">
+                <span>{{#str}}workload, theme_suap{{/str}}</span>
+                <span id="workload-range-total"></span>
+            </h5>
+            <div id="workload-slider"></div>
+            <p class="workload-range-label">
+                Horário selecionado: <span id="workload-range-display">20h – 60h</span>
+            </p>
         </div>
+
         <div id="filter-content-certificate-column" class="filter-content-column">
             <h5 class="filter-content-column-title">{{#str}}certificate, theme_suap{{/str}}</h5>
             <label><input type="checkbox" value="1"> {{#str}}yes, core{{/str}}</label>
@@ -64,3 +65,45 @@
         <button id="apply-filter" class="filter-footer-apply-button">{{#str}}applyfilters, core{{/str}}</button>
     </div>
 </div>
+
+
+<!-- noUiSlider CSS -->
+<link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css" rel="stylesheet">
+
+<!-- noUiSlider JS -->
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
+
+
+<script>
+    const slider = document.getElementById('workload-slider');
+    const rangeDisplay = document.getElementById('workload-range-display');
+    const rangeTotal = document.getElementById('workload-range-total');
+
+    noUiSlider.create(slider, {
+        start: [10, 100],
+        connect: true,
+        range: {
+            'min': 10,
+            'max': 100
+        },
+        step: 10,
+        format: {
+            to: function (value) {
+                return Math.round(value);
+            },
+            from: function (value) {
+                return Number(value);
+            }
+        }
+    });
+
+    const minPossible = slider.noUiSlider.options.range.min;
+    const maxPossible = slider.noUiSlider.options.range.max;
+
+    rangeTotal.innerText = `${minPossible} - ${maxPossible}`;
+
+    slider.noUiSlider.on('update', function(values) {
+        rangeDisplay.textContent = `${values[0]}h – ${values[1]}h`;
+    });
+
+</script>

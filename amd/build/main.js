@@ -151,7 +151,22 @@ define(["core/str"], function (str) {
     function getFilter() {
         const filters = { workload: [], certificate: [], lang: [], learningpath: [] };
 
-        document.querySelectorAll('#filter-content-workload-column input[type="checkbox"]:checked').forEach(checkbox => filters.workload.push(checkbox.value));
+        const slider = document.getElementById('workload-slider');
+        if (slider && slider.noUiSlider) {
+            const values = slider.noUiSlider.get(); // retorna como ["20", "60"]
+            const [minValue, maxValue] = values.map(Number); // transforma em [20, 60]
+            const range = slider.noUiSlider.options.range;
+            const minPossible = range.min;
+            const maxPossible = range.max;
+
+            if (minValue === minPossible && maxValue === maxPossible) {
+                filters.workload = [0];
+            } else {
+                filters.workload = [minValue, maxValue];
+            }
+        }
+
+
         filters.workload = filters.workload.join(',');
 
         document.querySelectorAll('#filter-content-certificate-column input[type="checkbox"]:checked').forEach(checkbox => filters.certificate.push(checkbox.value));
