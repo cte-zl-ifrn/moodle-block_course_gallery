@@ -183,7 +183,20 @@ define(["core/str"], function (str) {
 
     function updateFilterBadge() {
         const filters = getFilter();
-        let totalFilters = Object.values(filters).reduce((acc, val) => acc + (val ? val.split(',').length : 0), 0);
+        let totalFilters = 0;
+
+        // Verifica o filtro de carga horária
+        if (filters.workload && filters.workload !== '0') {
+            totalFilters++;
+        }
+
+        // Verifica checkboxes de certificado, idioma e trilha
+        ['certificate', 'lang', 'learningpath'].forEach(key => {
+            if (filters[key]) {
+                const values = filters[key].split(',').filter(Boolean); // ignora strings vazias
+                totalFilters += values.length;
+            }
+        });
 
         const badge = document.querySelector('.filter-badge');
         badge.style.display = totalFilters > 0 ? 'inline-block' : 'none';
@@ -235,6 +248,14 @@ define(["core/str"], function (str) {
 
     document.querySelector('#clear-filter').addEventListener('click', () => {
         document.querySelectorAll('.filter-content input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+        
+        // Reseta o slider (noUiSlider)
+        const slider = document.getElementById('workload-slider');
+        if (slider && slider.noUiSlider) {
+            const range = slider.noUiSlider.options.range;
+            slider.noUiSlider.set([range.min, range.max]);
+        }
+
         updateFilterBadge();
     });
 
