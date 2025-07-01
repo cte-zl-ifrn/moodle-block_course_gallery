@@ -23,7 +23,7 @@ define(['jquery', 'https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislide
 
             const minPossible = slider.noUiSlider.options.range.min;
             const maxPossible = slider.noUiSlider.options.range.max;
-            rangeTotal.innerText = `${minPossible} - ${maxPossible}`;
+            rangeTotal.innerText = `${minPossible}h - ${maxPossible}h`;
 
             slider.noUiSlider.on('update', function(values) {
                 rangeDisplay.textContent = `${values[0]}h – ${values[1]}h`;

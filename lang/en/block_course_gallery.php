@@ -30,3 +30,4 @@ $string['pluginname'] = 'Course Gallery';
 $string['add_title'] = 'Main  title';
 $string['filter'] = 'Filters';
 $string['max_courses'] = 'Courses per page';
+$string['selected_time'] = 'Selected time:';
