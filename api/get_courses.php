@@ -87,18 +87,21 @@ foreach ($courses as $course) {
     if (!empty($workload)) {
         $workload_values = explode(',', $workload);
         $is_valid_workload = false;
+
+        $min = (int) $workload_values[0];
+        $max = isset($workload_values[1]) ? (int) $workload_values[1] : $min;
+
+        if ($min > $max) {
+            list($min, $max) = [$max, $min];
+        }
+
         $course_workload = (int) $custom_fields_metadata->carga_horaria;
+
         if ($course_workload == 0) {
             continue;
         }
-        foreach ($workload_values as $value) {
 
-            if ($course_workload <= (int)$value) {
-                $is_valid_workload = true;
-                break;
-            }
-        }
-        if (!$is_valid_workload) {
+        if ($course_workload < $min || $course_workload > $max) {
             continue;
         }
     }

@@ -1,12 +1,12 @@
-<div class="frontpage-hero-main-header">
-    <div class="frontpage-hero-main-header-content">
+<div class="course-gallery-main-header">
+    <div class="course-gallery-main-header-content">
 
-        <h2 class="frontpage-hero-main-header-title">
+        <h2 class="course-gallery-main-header-title">
             {{{gallery_title}}}
         </h2>
 
-        <div class="frontpage-hero-main-header-filter">
-            <div class="frontpage-hero-main-header-filter-search">
+        <div class="course-gallery-main-header-filter">
+            <div class="course-gallery-main-header-filter-search">
                 <i class="fa fa-search"></i>
                 <input type="text" placeholder="{{#str}}search, core{{/str}}" id="search">
             </div>
@@ -24,35 +24,35 @@
 
 <div class="filter-area" id="filter-area">
     <div class="filter-header">
-        <span class="filter-header-title">{{#str}}filter, theme_suap{{/str}}</span>
-        <button id="close-filter" class="filter-header-close-button">
-            <img src="{{config.wwwroot}}/theme/suap/pix/close.svg" alt="Fechar">
+        <span class="filter-header-title">{{#str}}filter, block_course_gallery{{/str}}</span>
+        <button id="close-filter" class="filter-header-close-button" alt="{{#str}}closebuttontitle, core{{/str}}">
+            <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
     <div class="filter-content">
-        <div class="filter-content-workload-column">
-            <h5 class="filter-content-column-title">{{#str}}workload, theme_suap{{/str}}</h5>
-            <label><input type="checkbox" value="10"> {{#str}} upto_hours, theme_suap, 10 {{/str}}</label>
-            <label><input type="checkbox" value="20"> {{#str}} upto_hours, theme_suap, 20 {{/str}}</label>
-            <label><input type="checkbox" value="30"> {{#str}} upto_hours, theme_suap, 30 {{/str}}</label>
-            <label><input type="checkbox" value="40"> {{#str}} upto_hours, theme_suap, 40 {{/str}}</label>
-            <label><input type="checkbox" value="50"> {{#str}} upto_hours, theme_suap, 50 {{/str}}</label>
-            <label><input type="checkbox" value="60"> {{#str}} upto_hours, theme_suap, 60 {{/str}}</label>
-            <label><input type="checkbox" value="70"> {{#str}} upto_hours, theme_suap, 70 {{/str}}</label>
-            <label><input type="checkbox" value="80"> {{#str}} upto_hours, theme_suap, 80 {{/str}}</label>
+
+        <div id="filter-content-workload-column" class="filter-content-column">
+            <h5 class="filter-content-column-title">
+                <span>{{#str}}workload, theme_suap{{/str}}</span>
+                <span id="workload-range-total"></span>
+            </h5>
+            <div id="workload-slider"></div>
+            <p class="workload-range-label">
+                {{#str}} selected_time, block_course_gallery {{/str}} <span id="workload-range-display">20h – 60h</span>
+            </p>
         </div>
-        <div class="filter-content-certificate-column">
+
+        <div id="filter-content-certificate-column" class="filter-content-column">
             <h5 class="filter-content-column-title">{{#str}}certificate, theme_suap{{/str}}</h5>
             <label><input type="checkbox" value="1"> {{#str}}yes, core{{/str}}</label>
-            <label><input type="checkbox" value="0"> {{#str}}no, core{{/str}}</label>
         </div>
-        <div class="filter-content-lang-column">
+        <div id="filter-content-lang-column" class="filter-content-column">
             <h5 class="filter-content-column-title">{{#str}}language, core{{/str}}</h5>
             <label><input type="checkbox" value="pt_br"> {{#str}}pt-br, theme_suap{{/str}}</label>
             <label><input type="checkbox" value="es"> {{#str}}es, theme_suap{{/str}}</label>
             <label><input type="checkbox" value="en"> {{#str}}english, core{{/str}}</label>
         </div>
-        <div class="filter-content-learningpath-column">
+        <div id="filter-content-learningpath-column" class="filter-content-column">
             <h5 class="filter-content-column-title">Trilha</h5>
             {{#learningpaths}}
                 <label><input type="checkbox" value="{{id}}"> {{name}}</label>

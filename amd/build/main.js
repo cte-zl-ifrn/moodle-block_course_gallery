@@ -52,7 +52,7 @@ define(["core/str"], function (str) {
                     </div>
                 `;
                 courseArea.innerHTML += `
-                    <a class="frontpage-course-card" id="${course.id}" href="${baseurl}/course/view.php?id=${course.id}">
+                    <a class="course-gallery-card" id="${course.id}" href="${baseurl}/course/view.php?id=${course.id}">
                         <div class="course-image-container">
                             <img src="${course.image_url}" alt="${course.fullname}" class="course-image">
                         </div>
@@ -151,16 +151,31 @@ define(["core/str"], function (str) {
     function getFilter() {
         const filters = { workload: [], certificate: [], lang: [], learningpath: [] };
 
-        document.querySelectorAll('.filter-content-workload-column input[type="checkbox"]:checked').forEach(checkbox => filters.workload.push(checkbox.value));
+        const slider = document.getElementById('workload-slider');
+        if (slider && slider.noUiSlider) {
+            const values = slider.noUiSlider.get(); // retorna como ["20", "60"]
+            const [minValue, maxValue] = values.map(Number); // transforma em [20, 60]
+            const range = slider.noUiSlider.options.range;
+            const minPossible = range.min;
+            const maxPossible = range.max;
+
+            if (minValue === minPossible && maxValue === maxPossible) {
+                filters.workload = [0];
+            } else {
+                filters.workload = [minValue, maxValue];
+            }
+        }
+
+
         filters.workload = filters.workload.join(',');
 
-        document.querySelectorAll('.filter-content-certificate-column input[type="checkbox"]:checked').forEach(checkbox => filters.certificate.push(checkbox.value));
+        document.querySelectorAll('#filter-content-certificate-column input[type="checkbox"]:checked').forEach(checkbox => filters.certificate.push(checkbox.value));
         filters.certificate = filters.certificate.join(',');
 
-        document.querySelectorAll('.filter-content-lang-column input[type="checkbox"]:checked').forEach(checkbox => filters.lang.push(checkbox.value));
+        document.querySelectorAll('#filter-content-lang-column input[type="checkbox"]:checked').forEach(checkbox => filters.lang.push(checkbox.value));
         filters.lang = filters.lang.join(',');
 
-        document.querySelectorAll('.filter-content-learningpath-column input[type="checkbox"]:checked').forEach(checkbox => filters.learningpath.push(checkbox.value));
+        document.querySelectorAll('#filter-content-learningpath-column input[type="checkbox"]:checked').forEach(checkbox => filters.learningpath.push(checkbox.value));
         filters.learningpath = filters.learningpath.join(',');
 
         return filters;
@@ -168,7 +183,20 @@ define(["core/str"], function (str) {
 
     function updateFilterBadge() {
         const filters = getFilter();
-        let totalFilters = Object.values(filters).reduce((acc, val) => acc + (val ? val.split(',').length : 0), 0);
+        let totalFilters = 0;
+
+        // Verifica o filtro de carga horária
+        if (filters.workload && filters.workload !== '0') {
+            totalFilters++;
+        }
+
+        // Verifica checkboxes de certificado, idioma e trilha
+        ['certificate', 'lang', 'learningpath'].forEach(key => {
+            if (filters[key]) {
+                const values = filters[key].split(',').filter(Boolean); // ignora strings vazias
+                totalFilters += values.length;
+            }
+        });
 
         const badge = document.querySelector('.filter-badge');
         badge.style.display = totalFilters > 0 ? 'inline-block' : 'none';
@@ -220,7 +248,18 @@ define(["core/str"], function (str) {
 
     document.querySelector('#clear-filter').addEventListener('click', () => {
         document.querySelectorAll('.filter-content input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+        
+        // Reseta o slider (noUiSlider)
+        const slider = document.getElementById('workload-slider');
+        if (slider && slider.noUiSlider) {
+            const range = slider.noUiSlider.options.range;
+            slider.noUiSlider.set([range.min, range.max]);
+        }
+
         updateFilterBadge();
+
+        currentPage = 0;
+        loadCourses();
     });
 
     document.querySelector('#apply-filter').addEventListener('click', () => {
