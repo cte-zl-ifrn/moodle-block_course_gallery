@@ -79,6 +79,12 @@ class block_course_gallery extends block_base
         global $PAGE, $CFG;
         $courses_request_url = $CFG->wwwroot . '/blocks/course_gallery/api/get_courses.php';
         $PAGE->requires->js_call_amd('block_course_gallery/main', 'init', [$courses_request_url, $this->config->max_courses]);
+        
+        // noUiSlider
+        $PAGE->requires->css(new moodle_url('https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css'));
+        $PAGE->requires->js(new moodle_url('https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js'), true);
+
+        $PAGE->requires->js_call_amd('block_course_gallery/noUiSlider', 'init');
     }
 
     protected function render_courses()
