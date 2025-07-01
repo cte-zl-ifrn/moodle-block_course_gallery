@@ -257,6 +257,9 @@ define(["core/str"], function (str) {
         }
 
         updateFilterBadge();
+
+        currentPage = 0;
+        loadCourses();
     });
 
     document.querySelector('#apply-filter').addEventListener('click', () => {
