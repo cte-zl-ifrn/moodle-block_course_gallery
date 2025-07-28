@@ -36,7 +36,7 @@ define(["core/str"], function (str) {
                 const certificateArea = !course.has_certificate ? '' : `
                     <div class="course-certificate">
                         <p class="course-certificate-text">${certificate_str}</p>
-                        <span class="course-certificate-value"><img src="${baseurl}/theme/suap/pix/checkmark-circle-outline.svg" alt=""></span>
+                        <span class="course-certificate-value"><img class="course-certificate-value-img" src="${baseurl}/theme/suap/pix/checkmark-circle-outline.svg" alt=""></span>
                     </div>
                 `;
                 const langArea = !course.lang ? '' : `
