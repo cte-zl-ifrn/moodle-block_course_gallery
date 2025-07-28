@@ -44,18 +44,18 @@
 
         <div id="filter-content-certificate-column" class="filter-content-column">
             <h5 class="filter-content-column-title">{{#str}}certificate, theme_suap{{/str}}</h5>
-            <label><input type="checkbox" value="1"> {{#str}}yes, core{{/str}}</label>
+            <label class="filter-content-label"><input type="checkbox" class="filter-content-checkbox" value="1"> {{#str}}yes, core{{/str}}</label>
         </div>
         <div id="filter-content-lang-column" class="filter-content-column">
             <h5 class="filter-content-column-title">{{#str}}language, core{{/str}}</h5>
-            <label><input type="checkbox" value="pt_br"> {{#str}}pt-br, theme_suap{{/str}}</label>
-            <label><input type="checkbox" value="es"> {{#str}}es, theme_suap{{/str}}</label>
-            <label><input type="checkbox" value="en"> {{#str}}english, core{{/str}}</label>
+            <label class="filter-content-label"><input type="checkbox" class="filter-content-checkbox" value="pt_br"> {{#str}}pt-br, theme_suap{{/str}}</label>
+            <label class="filter-content-label"><input type="checkbox" class="filter-content-checkbox" value="es"> {{#str}}es, theme_suap{{/str}}</label>
+            <label class="filter-content-label"><input type="checkbox" class="filter-content-checkbox" value="en"> {{#str}}english, core{{/str}}</label>
         </div>
         <div id="filter-content-learningpath-column" class="filter-content-column">
             <h5 class="filter-content-column-title">Trilha</h5>
             {{#learningpaths}}
-                <label><input type="checkbox" value="{{id}}"> {{name}}</label>
+                <label class="filter-content-label"><input type="checkbox" class="filter-content-checkbox" value="{{id}}"> {{name}}</label>
             {{/learningpaths}}
         </div>
     </div>
